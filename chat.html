@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... head content from index.html ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - HouseRental</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        <style>
+       
+:root {
+    --primary-color: #2c3e50; /* Slate Blue */
+    --secondary-color: #1abc9c; /* Vibrant Teal */
+    --background-light: #fdfdfd;
+    --background-white: #ffffff;
+    --text-dark: #34495e;
+    --text-medium: #7f8c8d;
+    --border-color: #ecf0f1;
+    --font-family-body: 'Lato', sans-serif;
+    --font-family-heading: 'Poppins', sans-serif;
+    --shadow-soft: 0 4px 15px rgba(0,0,0,0.06);
+    --shadow-medium: 0 8px 25px rgba(44, 62, 80, 0.1);
+    --border-radius: 12px;
+}
+
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-family-body);
+    color: var(--text-dark);
+    line-height: 1.7;
+    background-color: var(--background-light);
+}
+
+
+h1, h2, h3, h4 {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+h1 { font-size: 3.2rem; }
+h2.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
+p.section-subtitle { text-align: center; max-width: 600px; margin: 0 auto 3.5rem auto; color: var(--text-medium); }
+h3 { font-size: 1.35rem; }
+
+a { text-decoration: none; color: var(--secondary-color); transition: color 0.3s ease; }
+a:hover { color: #16a085; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-align: center;
+}
+.btn-primary { background-color: var(--secondary-color); color: var(--background-white); }
+.btn-primary:hover { background-color: #16a085; transform: translateY(-3px); box-shadow: var(--shadow-medium); }
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+.btn-secondary:hover { background-color: var(--secondary-color); color: var(--background-white); }
+
+
+.main-header {
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+.main-header.scrolled {
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-soft);
+    padding: 15px 0;
+}
+
+.property-card {
+    background-color: var(--background-white); border-radius: var(--border-radius); overflow: hidden;
+    border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: var(--shadow-soft);
+}
+.property-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-medium); }
+
+.main-footer { 
+    background-color: var(--primary-color);
+    padding: 60px 0 20px; 
+    color: #ecf0f1;
+}
+
+
+
+
+.page-header {
+    background-color: var(--primary-color); /* Changed to dark theme color */
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+}
+.page-header .logo { color: var(--background-white); } /* Changed text to white */
+.page-header .nav-links a { color: var(--background-white); } /* Changed text to white */
+
+
+.user-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--secondary-color);
+}
+
+/* --- Dashboard Page --- */
+.dashboard-layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+.sidebar { background-color: var(--background-white); border-right: 1px solid var(--border-color); padding: 32px; }
+.sidebar-profile { text-align: center; margin-bottom: 32px; }
+.sidebar-profile img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 12px; }
+.sidebar-profile h3 { font-size: 1.2rem; }
+.sidebar-profile p { font-size: 0.9rem; color: var(--text-medium); margin: 0; }
+
+.sidebar-nav { list-style: none; }
+.sidebar-nav li a {
+    display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+    border-radius: var(--border-radius); color: var(--text-medium); font-weight: 500; margin-bottom: 8px;
+}
+.sidebar-nav li a:hover { background-color: #f8f9fa; color: var(--text-dark); }
+.sidebar-nav li a.active { background-color: var(--secondary-color); color: var(--background-white); font-weight: 600; }
+.sidebar-nav li a i { width: 20px; text-align: center; font-size: 1.1rem; }
+
+.dashboard-content { padding: 48px; background-color: #f8f9fa; }
+.dashboard-content h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.dashboard-content .welcome-message { color: var(--text-medium); margin-bottom: 2.5rem; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.section-header h2 { margin-bottom: 0; font-size: 1.8rem; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 48px; }
+
+.info-table { width: 100%; border-collapse: collapse; background-color: var(--background-white); border-radius: var(--border-radius); box-shadow: var(--shadow-soft); overflow: hidden; }
+.info-table thead th { text-align: left; background-color: #f8f9fa; color: var(--text-medium); font-weight: 600; padding: 16px; font-size: 0.9rem; border-bottom: 2px solid var(--border-color); }
+.info-table tbody td { padding: 16px; vertical-align: middle; border-bottom: 1px solid var(--border-color); }
+.info-table tbody tr:last-child td { border-bottom: none; }
+.status-badge { padding: 5px 14px; border-radius: 50px; font-weight: 600; font-size: 0.8rem; }
+.status-pending { background-color: #fef3c7; color: #92400e; }
+.status-accepted { background-color: #d1fae5; color: #065f46; }
+
+/* --- Property Detail Page --- */
+.page-wrapper { padding-top: 80px; } /* Offset for fixed header */
+.detail-section { padding: 60px 0; }
+.image-gallery { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 48px; }
+.main-image img { width: 100%; height: 500px; object-fit: cover; border-radius: var(--border-radius); }
+.thumb-images { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.thumb-images img { width: 100%; height: 238px; object-fit: cover; border-radius: var(--border-radius); }
+
+.detail-layout { display: grid; grid-template-columns: 2.5fr 1.5fr; gap: 60px; }
+.detail-content h1 { font-size: 2.8rem; margin-bottom: 8px; }
+.detail-content .location { font-size: 1.1rem; color: var(--text-medium); margin-bottom: 24px; }
+.detail-specs { display: flex; gap: 32px; padding: 24px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.detail-specs span { font-size: 1.1rem; font-weight: 500; }
+.detail-specs i { color: var(--secondary-color); margin-right: 8px; }
+.detail-section h2 { font-size: 1.8rem; margin-bottom: 1rem; margin-top: 2rem; }
+.amenities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.amenity-item { background: #f8f9fa; border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 16px; display: flex; align-items: center; gap: 12px; }
+.booking-box { background: var(--background-white); padding: 32px; border-radius: var(--border-radius); box-shadow: var(--shadow-medium); position: sticky; top: 120px; }
+.booking-box .btn { width: 100%; margin-top: 16px; }
+
+/* --- Chat Page --- */
+.chat-layout { display: grid; grid-template-columns: 350px 1fr; height: calc(100vh - 73px); }
+.chat-sidebar { border-right: 1px solid var(--border-color); display: flex; flex-direction: column; background: var(--background-white); }
+.chat-list { flex-grow: 1; overflow-y: auto; }
+.chat-item { display: flex; align-items: center; gap: 12px; padding: 16px; cursor: pointer; border-bottom: 1px solid var(--border-color); }
+.chat-item:hover { background-color: #f8f9fa; }
+.chat-item.active { background-color: #e8f8f5; border-right: 4px solid var(--secondary-color); }
+.chat-item img { width: 50px; height: 50px; border-radius: 50%; }
+.chat-item h4 { font-size: 1rem; margin: 0; }
+.chat-item p { font-size: 0.9rem; margin: 0; color: var(--text-medium); }
+
+.chat-window { display: flex; flex-direction: column; background-color: #f8f9fa; }
+.chat-header { padding: 16px 24px; background: var(--background-white); border-bottom: 1px solid var(--border-color); font-weight: 600; font-size: 1.2rem; }
+.message-area { flex-grow: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+.message-bubble { max-width: 65%; padding: 14px 20px; border-radius: 20px; line-height: 1.5; }
+.message-bubble .timestamp { font-size: 0.8rem; color: var(--text-medium); margin-bottom: 4px; display: block; }
+.sent { background: var(--secondary-color); color: var(--background-white); align-self: flex-end; border-bottom-right-radius: 4px; }
+.sent .timestamp { color: rgba(255,255,255,0.7); }
+.received { background: var(--background-white); color: var(--text-dark); align-self: flex-start; border: 1px solid var(--border-color); border-bottom-left-radius: 4px; }
+.message-input-form { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--background-white); border-top: 1px solid var(--border-color); }
+.message-input-form input { flex-grow: 1; padding: 14px; border-radius: 50px; background: #f8f9fa; border: 1px solid var(--border-color); }
+.message-input-form .btn { border-radius: 50%; width: 52px; height: 52px; padding: 0; font-size: 1.2rem; }
+
+/* --- Search Results Page --- */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px 0; border-bottom: 1px solid var(--border-color); margin-bottom: 24px; }
+.filter-btn { background: var(--background-white); border: 2px solid var(--border-color); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: 500; }
+.results-header { margin-bottom: 24px; font-size: 1.2rem; }
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+/* We can reuse the .property-card style from the homepage */
+
+.pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 60px; padding-bottom: 60px; }
+.pagination a { padding: 10px 18px; border: 2px solid var(--border-color); border-radius: 50px; color: var(--text-dark); font-weight: 600; }
+.pagination a.active, .pagination a:hover { background: var(--secondary-color); color: var(--background-white); border-color: var(--secondary-color); }
+
+
+
+
+/* --- General Page Structure for ALL pages --- */
+.content-wrapper {
+    padding-top: 80px; /* IMPORTANT: Pushes content below the fixed header */
+    background-color: #f8f9fa; /* A light grey for content areas */
+    min-height: 100vh;
+}
+
+/* --- Dashboard Page --- */
+.dashboard-layout { 
+    display: grid; 
+    grid-template-columns: 280px 1fr; 
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+.sidebar { background-color: var(--background-white); border-right: 1px solid var(--border-color); padding: 32px; border-radius: var(--border-radius); }
+
+
+/* --- Chat Page --- */
+.chat-layout { 
+    display: grid; 
+    grid-template-columns: 350px 1fr; 
+    height: calc(100vh - 120px); /* Fill height minus header & some padding */
+    max-width: 1400px;
+    margin: 24px auto;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+}
+
+.detail-section { padding: 60px 0; }
+/* ... other detail styles are the same ... */
+
+
+
+.search-results-container {
+    padding: 48px 0;
+}
+/* ... other search styles are the same ... */
+    </style>
+    </style>
+</head>
+<body>
+    
+    <header class="page-header">
+        <nav class="navbar container">
+            <a href="#" class="logo"><i class="fa-solid fa-house-chimney-window"></i> AmarThikana</a>
+            <ul class="nav-links">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">My Rentals</a></li>
+            </ul>
+            <div class="user-avatar">
+                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=160&h=150&dpr=1" alt="User Avatar">
+            </div>
+        </nav>
+    </header>
+    
+    <div class="chat-layout">
+        <aside class="chat-sidebar">
+            <div class="chat-list">
+                <div class="chat-item active">
+                    <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Clara Bennett">
+                    <div>
+                        <h4>Clara Bennett</h4>
+                        <p>Okay, that sounds great!</p>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Owen Carter">
+                    <div>
+                        <h4>Owen Carter</h4>
+                        <p>Can I see it tomorrow?</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-window">
+            <div class="chat-header">Clara Bennett</div>
+            <div class="message-area">
+                <div class="message-bubble received">
+                    <span class="timestamp">July 10, 2:30 PM</span>
+                    Hi there, I'm interested in renting your apartment. Is it available from July 15th to July 20th?
+                </div>
+                <div class="message-bubble sent">
+                    <span class="timestamp">July 10, 2:45 PM</span>
+                    Hello Clara, thank you for your interest! Yes, the apartment is available during those dates.
+                </div>
+            </div>
+            <form class="message-input-form">
+                <input type="text" placeholder="Type a message...">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
